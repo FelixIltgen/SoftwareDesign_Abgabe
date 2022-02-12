@@ -192,7 +192,7 @@ export class Car {
         console.log("HIER FUNKTION FÜR ZURÜCK ZUM HAUPTMENÜ")
     }
 
-    public async filterCar(): Promise<void> {
+    public async filterCar(): Promise<userBookingInfo> {
         this.userDate = await Console.dateQuestion("Geben Sie ein Datum ein und eine Uhrzeit an");
         this.userTime = await Console.numberQuestion("Bitte geben Sie eine Zeit in Minuten an!");
 
@@ -258,9 +258,12 @@ export class Car {
          for(let i = 0; i< this.allCarInfo.length;i++){
             if(chosenCar == this.allCarInfo[i].description){
                 this.currentCar = i;
+                break;
             }
         }
-        this.calculateFinPrice(); 
+        this.calculateFinPrice();
+        //console.log(this.userDate.value,this.currentCar, this.userTime.value, this.finalPrice);
+        return { date: this.userDate.value, car: this.currentCar , duration: this.userTime.value , price: this.finalPrice}
     }
 
     public calculateFinPrice(): void {
