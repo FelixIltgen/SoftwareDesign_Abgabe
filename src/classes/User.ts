@@ -75,6 +75,7 @@ export class User {
     if (username.value == "Admin" && userPassword.value == "123") {
 
       console.log("Sie sind als Admin eingelogt");
+      this.globalUserName = username.value;
     
     } else {
 

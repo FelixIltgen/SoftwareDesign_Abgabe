@@ -49,6 +49,20 @@ class Console {
       initial: 1
     })
   }
+  public showFourOptions(options : string[], question: string) : Promise<Answers<string>> {
+    return prompts({
+      type: 'select',
+      name: 'value',
+      message: question,
+      choices: [
+        { title: options[0], value: '1' },
+        { title: options[1], value: '2' },
+        { title: options[2], value: '3' },
+        { title: options[3], value: '4' }
+      ],
+      initial: 1
+    })
+  }
   public showMoreOptions(options : string[], question: string) : Promise<Answers<string>> {
     return prompts({
       type: 'select',
@@ -64,7 +78,7 @@ class Console {
       initial: 1
     })
   }
-  public showFourOptions(options : string[], question: string) : Promise<Answers<string>> {
+  public showSixOptions(options : string[], question: string) : Promise<Answers<string>> {
     return prompts({
       type: 'select',
       name: 'value',
@@ -73,7 +87,9 @@ class Console {
         { title: options[0], value: '1' },
         { title: options[1], value: '2' },
         { title: options[2], value: '3' },
-        { title: options[3], value: '4' }
+        { title: options[3], value: '4' },
+        { title: options[4], value: '5' },
+        { title: options[5], value: '6' }
       ],
       initial: 1
     })
@@ -103,7 +119,6 @@ class Console {
        
     })
   }
-
   public benutzerAbfragePw(question: string) : Promise<Answers<string>> {
     return prompts({
       type: 'password',

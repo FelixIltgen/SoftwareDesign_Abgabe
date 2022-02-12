@@ -32,11 +32,17 @@ namespace Project {
         case "1":
           await this.user.userLogin();
           this.userName = this.user.getUsername();
-          if (this.userName != "") {
+    
+          if (this.userName == "Admin") {
+            await this.showAdminMenu();
+
+          } else if (this.userName != "") {
             await this.showUserMenu();
+
           } else {
             await this.programStart();
           }
+
           break;
 
         case "2":
@@ -92,14 +98,11 @@ namespace Project {
           this.programStart();
           break;
       }
-
-
     }
-
     public async showUserMenu() {
-      
+
       let decision: Answers<string> = await Console.showMoreOptions(["Autos suchen", "Autos filtern", "Alle Autos anzeigen", "Statistiken", "Abmelden"], "Was möchten Sie tun?");
-      
+
       switch (decision.value) {
         case "1":
           await this.car.searchCar()
@@ -119,7 +122,7 @@ namespace Project {
         case "2":
           this.bookingInfoInterface = await this.car.filterCar();
           this.userName = this.user.getUsername();
-          
+
           if (this.userName == "") {
             console.log("Sie sind nicht angemeldet");
             console.log("-------------------------");
@@ -128,7 +131,7 @@ namespace Project {
             await this.booking.bookCar(this.bookingInfoInterface, this.userName);
           }
           this.showUserMenu();
-          
+
           break;
 
         case "3":
@@ -167,7 +170,6 @@ namespace Project {
             default:
               break;
           }
-
           break;
 
         case "5":
@@ -181,12 +183,95 @@ namespace Project {
       }
     }
 
+    public async showAdminMenu() {
 
+      let decision: Answers<string> = await Console.showSixOptions(["Autos suchen", "Autos filtern", "Alle Autos anzeigen", "Statistiken", "Autos hinzufügen", "Abmelden"], "Was möchten Sie tun");
 
+      switch (decision.value) {
+        case "1":
+          await this.car.searchCar()
+          this.bookingInfoInterface = await this.car.requestCar();
+          this.userName = this.user.getUsername();
+
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
+          this.showAdminMenu();
+          break;
+
+        case "2":
+          this.bookingInfoInterface = await this.car.filterCar();
+          this.userName = this.user.getUsername();
+
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
+          this.showAdminMenu();
+          break;
+
+        case "3":
+          await this.car.showAllCars();
+          this.bookingInfoInterface = await this.car.requestCar();
+          this.userName = this.user.getUsername();
+
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
+          this.showAdminMenu;
+          break;
+
+        case "4":
+          let decision: Answers<string> = await Console.showOptions(["Alle buchungen Anzeigen", "kumulierten Betrag anzeigen", "Durchschnittsbetrag anzeigen"], "Was möchten Sie genau sehen");
+          switch (decision.value) {
+            case "1":
+              this.statistics.showbookings(this.userName);
+              this.showUserMenu();
+              break;
+
+            case "2":
+              this.statistics.showBookingSum(this.userName);
+              this.showUserMenu();
+              break;
+
+            case "3":
+              this.statistics.showAverageCost(this.userName);
+              this.showUserMenu();
+              break;
+
+            default:
+              break;
+          }
+          break;
+        
+        case "5":
+          await this.car.addCar()
+          this.showAdminMenu();
+          break;
+
+        case "6":
+          console.log("Sie werden abgemeldet!")
+          this.userName = "";
+          this.programStart();
+
+          break;
+
+        default:
+          break;
+      }
+    }
   }
-
   let main: Main = new Main();
   main.programStart();
-
-
 }

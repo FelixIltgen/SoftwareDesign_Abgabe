@@ -28,5 +28,15 @@
         "maxUse": 60,
         "price": "350",
         "pricePerMin": "2"
+    },
+    {
+        "id": "4",
+        "description": "VW Golf 3",
+        "type": "true",
+        "earliestTime": "2022-02-12T00:00:00.174Z",
+        "latestTime": "2022-02-12T22:00:00.114Z",
+        "maxUse": 180,
+        "price": "100",
+        "pricePerMin": "1"
     }
 ]
