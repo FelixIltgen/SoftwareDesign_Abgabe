@@ -132,7 +132,18 @@ namespace Project {
           break;
 
         case "3":
-         
+          await this.car.showAllCars();
+          this.bookingInfoInterface = await this.car.requestCar();
+          this.userName = this.user.getUsername();
+
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
+          this.showUserMenu();
           break;
 
         case "4":

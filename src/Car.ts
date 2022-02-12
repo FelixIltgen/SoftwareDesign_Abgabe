@@ -48,12 +48,14 @@ export class Car {
                 let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
                 //show chosen car.
                 console.log(this.allCarInfo[carNumber.value]);
+                this.currentCar = carNumber.value;
                 
             } else {
                 //Choice two: chose one car out of the first ten
                 let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
                 //show chosen car.
                 console.log(this.allCarInfo[carNumber.value]);
+                this.currentCar = carNumber.value;
             }
 
         } else {
@@ -66,6 +68,7 @@ export class Car {
             }
             let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
             console.log(this.allCarInfo[carNumber.value]);
+            this.currentCar = carNumber.value;
             
         }
     }

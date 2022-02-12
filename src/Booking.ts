@@ -27,12 +27,12 @@ export class Booking{
           this.booking.customer = name; 
           this.booking.duration = information.duration;
           this.booking.price = information.price;
-          
+          console.log("------------------------------------------------------");
           console.log("Ihr Gewünschtes Datum und Uhrzeit:" + this.booking.date);
           console.log("Angefragtes Auto: "+this.booking.car);
           console.log("Name: "+this.booking.customer);
-          console.log("Dauer Ihrer Buchung: "+this.booking.duration+" Minuten.")
-          console.log("Kompletter Buchungspreis: "+this.booking.price+" Euro.")
+          console.log("Dauer Ihrer Buchung: "+this.booking.duration+" Minuten.");
+          console.log("Kompletter Buchungspreis: "+this.booking.price+" Euro.");
     
           let wiriteBooking: Answers<string> = await Console.yesNo("Wollen Sie mit den Oben angegebenen Daten das Auto buchen?")
           if (wiriteBooking.value == true) {
