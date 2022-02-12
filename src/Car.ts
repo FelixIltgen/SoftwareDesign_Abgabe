@@ -18,7 +18,7 @@ export class Car {
     public booking: bookingData = { date: new Date(), car: "", customer: "", duration: 0, price: 0 };
     public allBokkingInfo: bookingData[] = FileHandler.readJsonFile("json/booking.json");
 
-    public bookingInfo: userBookingInfo = { date: new Date(), car: 0, duration: 0, price: 0};
+    public bookingInfo: userBookingInfo = { date: new Date(), car: 0, duration: 0, price: 0 };
 
     public currentCar: number = 0;
     public finalPrice: number = 0;
@@ -48,15 +48,12 @@ export class Car {
                 let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
                 //show chosen car.
                 console.log(this.allCarInfo[carNumber.value]);
-                console.log("HIER FUNKTION FÜR PUNKT 1.1");
-                //WEITER MIT PUNKT 1.1 (SUCHE)
+                
             } else {
                 //Choice two: chose one car out of the first ten
                 let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
                 //show chosen car.
                 console.log(this.allCarInfo[carNumber.value]);
-                console.log("HIER FUNKTION FÜR PUNKT 1.1");
-                //WEITER MIT PUNKT 1.1 (SUCHE)
             }
 
         } else {
@@ -69,8 +66,7 @@ export class Car {
             }
             let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
             console.log(this.allCarInfo[carNumber.value]);
-            console.log("HIER FUNKTION FÜR PUNKT 1.1");
-            //WEITER MIT PUNKT 1.1 (SUCHE)
+            
         }
     }
 
@@ -114,8 +110,8 @@ export class Car {
             this.searchCar();
         }
     }
-  
-    public async requestCar(): Promise <userBookingInfo> {
+
+    public async requestCar(): Promise<userBookingInfo> {
         this.userDate = await Console.dateQuestion("Geben Sie ein Datum ein und eine Uhrzeit an");
         this.userTime = await Console.numberQuestion("Bitte geben Sie eine Zeit in Minuten an!");
         let minTime: number = new Date(this.allCarInfo[this.currentCar].earliestTime).getHours();
@@ -129,12 +125,12 @@ export class Car {
         } else if (usingTime < minTime || usingTime > maxTime || (usingTime / 60) + minTime > maxTime) {
             console.log("Ihre gewählte Nutzungsdauer passt leider nicht zu Ihrem gewählten Auto");
         } else if (this.allBokkingInfo.length == 0) {
-           
+
             this.calculateFinPrice();
         } else {
-            let userDateNumber = this.userDate.value.getTime();
-            let userTimeNumber = (this.userTime.value * 60) * 1000;
-            let completeUserTime = userDateNumber + userTimeNumber;
+            let userDateNumber: number = this.userDate.value.getTime();
+            let userTimeNumber: number = (this.userTime.value * 60) * 1000;
+            let completeUserTime: number = userDateNumber + userTimeNumber;
             let checkTimeForBooking: boolean = false;
 
             for (let i = 0; i < this.allBokkingInfo.length; i++) {
@@ -142,8 +138,8 @@ export class Car {
                 let bookingDuration = (this.allBokkingInfo[i].duration * 60) * 1000;
                 let completeBookingTime = bookingTime + bookingDuration;
 
-                if (bookingTime == userDateNumber && completeBookingTime == completeUserTime || 
-                    completeBookingTime >= userDateNumber && completeBookingTime <= completeUserTime || 
+                if (bookingTime == userDateNumber && completeBookingTime == completeUserTime ||
+                    completeBookingTime >= userDateNumber && completeBookingTime <= completeUserTime ||
                     bookingTime <= completeUserTime && bookingTime >= userDateNumber) {
                     checkTimeForBooking = false;
                 } else {
@@ -153,10 +149,12 @@ export class Car {
             if (checkTimeForBooking == false) {
                 console.log("Leider ist der gewählte Zeitraum für dieses Auto schon belegt")
             } else {
-                this.calculateFinPrice();   
+                this.calculateFinPrice();
             }
         }
-        return {date: this.userDate.value, car: this.currentCar, duration: this.userTime.value, price: this.finalPrice}
+        
+        return { date: this.userDate.value, car: this.currentCar, duration: this.userTime.value, price: this.finalPrice }
+        this.finalPrice =0;
     }
 
     public async addCar(): Promise<void> {
@@ -194,13 +192,85 @@ export class Car {
         console.log("HIER FUNKTION FÜR ZURÜCK ZUM HAUPTMENÜ")
     }
 
-    public calculateFinPrice(): void{
+    public async filterCar(): Promise<void> {
+        this.userDate = await Console.dateQuestion("Geben Sie ein Datum ein und eine Uhrzeit an");
+        this.userTime = await Console.numberQuestion("Bitte geben Sie eine Zeit in Minuten an!");
+
+        let usingTimeHours: number = this.userDate.value.getHours() * 60;
+        let usingTimeMinute: number = this.userDate.value.getMinutes();
+        let usingTime: number = usingTimeHours + usingTimeMinute;
+
+        let userDateNumber: number = this.userDate.value.getTime();
+        let userTimeNumber: number = (this.userTime.value * 60) * 1000;
+        let completeUserTime: number = userDateNumber + userTimeNumber;
+
+        let foundCars: string [] = []; 
+        let rdyForPrice: boolean = false;
+
+        for (let i = 0; i < this.allCarInfo.length; i++) {
+
+            let minTimeHour: number = new Date(this.allCarInfo[i].earliestTime).getHours() * 60;
+            let minTimeMin: number = new Date(this.allCarInfo[i].earliestTime).getMinutes();
+            let maxTimeHour: number = new Date(this.allCarInfo[i].latestTime).getHours() * 60;
+            let maxTimeMin: number = new Date(this.allCarInfo[i].latestTime).getHours();
+
+            let minTime: number = minTimeHour + minTimeMin;
+            let maxTime: number = maxTimeHour + maxTimeMin;
+
+            if (this.userTime.value > this.allCarInfo[i].maxUse) {
+                rdyForPrice = false;
+
+            } else if (usingTime < minTime || usingTime > maxTime) {
+                rdyForPrice = false;
+
+            } else if (this.allBokkingInfo.length == 0) {
+                rdyForPrice = true;
+
+            } else {
+                for (let i = 0; i < this.allBokkingInfo.length; i++) {
+
+                    let bookingTime = new Date(this.allBokkingInfo[i].date).getTime();
+                    let bookingDuration = (this.allBokkingInfo[i].duration * 60) * 1000;
+                    let completeBookingTime = bookingTime + bookingDuration;
+
+                    if (bookingTime == userDateNumber && completeBookingTime == completeUserTime || completeBookingTime >= userDateNumber && completeBookingTime <= completeUserTime || bookingTime <= completeUserTime && bookingTime >= userDateNumber) {
+                        rdyForPrice = false;
+                    } else {
+                        rdyForPrice = true;
+                        break;
+                    }
+                }
+            }
+            if (rdyForPrice == true) {
+
+                foundCars.push(this.allCarInfo[i].description);
+            }
+        }
+        console.log("Es werden " + foundCars.length + " Autos angezeigt!")
+        console.log("-----------------------------");
+
+        for(let i = 0; i< foundCars.length; i++){
+            console.log([i]+": " + foundCars[i]);
+        }
+        let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
+        let chosenCar: string = foundCars[carNumber.value];
+
+         for(let i = 0; i< this.allCarInfo.length;i++){
+            if(chosenCar == this.allCarInfo[i].description){
+                this.currentCar = i;
+            }
+        }
+        this.calculateFinPrice(); 
+    }
+
+    public calculateFinPrice(): void {
 
         let pricePerMinute: number = this.allCarInfo[this.currentCar].pricePerMin * this.userTime.value;
         let groundPrice: number = this.allCarInfo[this.currentCar].price * 1;
         this.finalPrice = pricePerMinute + groundPrice;
         console.log("Ihr Finaler Preis für diese Fahrt beträgt: " + this.finalPrice);
-        this.finalPrice = 0;
-   }
-    
+        
+    }
+
+
 }

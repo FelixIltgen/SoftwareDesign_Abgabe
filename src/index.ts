@@ -10,6 +10,7 @@ import { Usermenus } from './classes/Menus';
 import Console from './classes/singletons/Console';
 import FileHandler from './classes/singletons/FileHandler';
 import { User } from './classes/User';
+import { Statistic } from './Statistic';
 
 
 namespace Project {
@@ -18,26 +19,20 @@ namespace Project {
     public user: User = new User();
     public car: Car = new Car();
     public booking: Booking = new Booking();
+    public statistics: Statistic = new Statistic();
 
-    /* public globalUserName: string = "";
-    public globalUserPassword: string = "";
-    public allUserInfo: userData[] = FileHandler.readJsonFile("json/user.json");
-    public checkUserName: boolean = false;
-    public checkUserPassword: boolean = false; */
+    public userName: string = "";
+    public bookingInfoInterface: userBookingInfo = { date: new Date(), car: 0, duration: 0, price: 0 };
 
     public async programStart() {
 
-      let userName: string = "";
-      let bookingInfoInterface: userBookingInfo;
-
-      console.log("HIER PROGRAMM FÜR COOLE ANIMATION")
       let decision: Answers<string> = await Console.showMoreOptions(["Anmelden", "Registrieren", "Autos suchen", "Autos filtern", "Alle Autos anzeigen"], "Wilkommen, wie können wir Ihnen helfen");
 
       switch (decision.value) {
         case "1":
           await this.user.userLogin();
-          userName = this.user.getUsername();
-          if (userName != "") {
+          this.userName = this.user.getUsername();
+          if (this.userName != "") {
             await this.showUserMenu();
           } else {
             await this.programStart();
@@ -46,31 +41,50 @@ namespace Project {
 
         case "2":
           await this.user.userRegitser();
-          userName = this.user.getUsername();
-          if (userName != "") {
+          this.userName = this.user.getUsername();
+          if (this.userName != "") {
             await this.showUserMenu();
           } else {
             await this.programStart();
           }
-
           break;
 
         case "3":
-          
-         await this.car.searchCar()
-         bookingInfoInterface = await this.car.requestCar();
-         userName = this.user.getUsername();
-         await this.booking.bookCar(bookingInfoInterface, userName);
+          await this.car.searchCar()
+          this.bookingInfoInterface = await this.car.requestCar();
+          this.userName = this.user.getUsername();
+
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
           break;
 
         case "4":
+          await this.car.filterCar();
 
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
           break;
 
         case "5":
           await this.car.showAllCars();
           await this.car.requestCar();
-          //this.booking.bookCar(bookingInfoInterface, userName);
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
           break;
 
         default:
@@ -83,24 +97,71 @@ namespace Project {
     }
 
     public async showUserMenu() {
-
-      let decision: Answers<string> = Console.showFourOptions(["Autos suchen", "Autos filtern", "Alle Autos anzeigen", "Statistiken"], "Was möchten Sie tun?");
-
+      
+      let decision: Answers<string> = await Console.showMoreOptions(["Autos suchen", "Autos filtern", "Alle Autos anzeigen", "Statistiken", "Abmelden"], "Was möchten Sie tun?");
+      
       switch (decision.value) {
         case "1":
+          await this.car.searchCar()
+          this.bookingInfoInterface = await this.car.requestCar();
+          this.userName = this.user.getUsername();
 
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
+          this.showUserMenu();
           break;
 
         case "2":
-
+          await this.car.filterCar();
+          
           break;
 
         case "3":
-
+          await this.car.showAllCars();
+          this.bookingInfoInterface = await this.car.requestCar();
+          if (this.userName == "") {
+            console.log("Sie sind nicht angemeldet");
+            console.log("-------------------------");
+            this.programStart();
+          } else {
+            await this.booking.bookCar(this.bookingInfoInterface, this.userName);
+          }
+          this.showUserMenu;
           break;
 
         case "4":
+          let decision: Answers<string> = await Console.showOptions(["Alle buchungen Anzeigen", "kumulierten Betrag anzeigen", "Durchschnittsbetrag anzeigen"], "Was möchten Sie genau sehen");
+          switch (decision.value) {
+            case "1":
+              this.statistics.showbookings(this.userName);
+              this.showUserMenu();
+              break;
 
+            case "2":
+              this.statistics.showBookingSum(this.userName);
+              this.showUserMenu();
+              break;
+
+            case "3":
+              this.statistics.showAverageCost(this.userName);
+              this.showUserMenu();
+              break;
+
+            default:
+              break;
+          }
+
+          break;
+
+        case "5":
+          console.log("Sie werden abgemeldet!")
+          this.userName = "";
+          this.programStart();
           break;
 
         default:
@@ -113,16 +174,7 @@ namespace Project {
   }
 
   let main: Main = new Main();
-
-  //let menu: Usermenus = new Usermenus();
-
-  //main.userAnmeldung();
-  //user.userLogin();
-  //user.addCar();
   main.programStart();
-  //menu.adminMenu();
-  //user.showAllCars();
-  //user.searchCar();
-  //user.requestCar();
-  //user.bookCar();
+
+
 }

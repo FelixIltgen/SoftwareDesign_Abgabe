@@ -21,11 +21,7 @@ export class Booking{
     public allCarInfo: carData[] = FileHandler.readJsonFile("json/car.json");
 
     public async bookCar(information: userBookingInfo, name: string) {
-
-        if (name == "") {
-          console.log("Sie sind nicht angemeldet");
           
-        } else {
           this.booking.date = information.date;
           this.booking.car = this.allCarInfo[information.car].description;
           this.booking.customer = name; 
@@ -34,7 +30,7 @@ export class Booking{
           
           console.log("Ihr Gewünschtes Datum und Uhrzeit:" + this.booking.date);
           console.log("Angefragtes Auto: "+this.booking.car);
-          console.log("Name: "+this.booking.customer)
+          console.log("Name: "+this.booking.customer);
           console.log("Dauer Ihrer Buchung: "+this.booking.duration+" Minuten.")
           console.log("Kompletter Buchungspreis: "+this.booking.price+" Euro.")
     
@@ -44,9 +40,7 @@ export class Booking{
             this.allBokkingInfo.push(this.booking);
             FileHandler.writeJsonFile("json/booking.json", this.allBokkingInfo);
             console.log("Ihre Buchung wurde erfolgreich gespeichert.")
-          } else {
-            console.log("Zurück zum Hauptmenü")
-           }
-        }
+          }
+        
       }
 }

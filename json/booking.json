@@ -1,9 +1,16 @@
 [
     {
-        "date": "2022-02-08T07:26:18.945Z",
+        "date": "2022-02-12T07:31:25.821Z",
         "car": "Porsche GT3",
-        "customer": "HIER STEHT EIN TEST USER",
+        "customer": "Felix Iltgen",
         "duration": 60,
         "price": 360
+    },
+    {
+        "date": "2022-02-12T16:44:01.047Z",
+        "car": "Toyota MR2",
+        "customer": "Felix Iltgen",
+        "duration": 60,
+        "price": 470
     }
 ]

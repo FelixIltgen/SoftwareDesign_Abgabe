@@ -20,8 +20,6 @@ export class User {
   public allUserInfo: userData[] = FileHandler.readJsonFile("json/user.json");
   public data: userData = { username: "", password: "" };
   
-  
-
   public async userRegitser(): Promise<void> {
 
     console.log("Wilkommen bei der Registrierung!");
