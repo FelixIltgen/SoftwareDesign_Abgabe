@@ -170,8 +170,12 @@ export class Car {
         let carDiscription = await Console.benutzerAbfrage("Bitte geben Sie eine Beschreibung für das Auto an!");
         this.car.description = carDiscription.value;
 
-        let carType = await Console.benutzerAbfrage("Bitte geben Sie die Antriebsart mit true/false an!");
+        let carType = await Console.yesNo("Hat das Auto einen Elektroantrieb?");
         this.car.type = carType.value;
+        if(carType.value == true){
+            console.log("E wurde hinzugefügt");
+            this.car.description = carDiscription.value + " (E)";
+        }
 
         let carMinTime = await Console.dateQuestion("Bitte geben Sie eine frühste Nutztungsuhrzeit an!");
         this.car.earliestTime = carMinTime.value;
@@ -277,6 +281,4 @@ export class Car {
         console.log("Ihr Finaler Preis für diese Fahrt beträgt: " + this.finalPrice);
         
     }
-
-
 }

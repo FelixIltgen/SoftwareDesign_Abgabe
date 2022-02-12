@@ -38,5 +38,15 @@
         "maxUse": 180,
         "price": "100",
         "pricePerMin": "1"
+    },
+    {
+        "id": "Test",
+        "description": "E-Auto XY(E)",
+        "type": true,
+        "earliestTime": "2022-02-13T00:38:40.007Z",
+        "latestTime": "2022-02-12T11:38:48.445Z",
+        "maxUse": 120,
+        "price": "200",
+        "pricePerMin": "1"
     }
 ]
