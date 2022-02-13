@@ -1,6 +1,4 @@
-import { mainModule } from "process";
 import { Answers } from "prompts";
-import { Car } from "./Car";
 import { bookingData } from "./dao/booking";
 import { userBookingInfo } from "./dao/bookingInfo";
 import { carData } from "./dao/carInformation";

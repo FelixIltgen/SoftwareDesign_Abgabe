@@ -1,13 +1,9 @@
 import console from 'console';
 import { Answers } from 'prompts';
-import * as readline from 'readline';
-import { couldStartTrivia } from 'typescript';
 import { Booking } from './classes/Booking';
 import { Car } from './classes/Car';
 import { userBookingInfo } from './classes/dao/bookingInfo';
-import { userData } from './classes/dao/userInterface';
 import Console from './classes/singletons/Console';
-import FileHandler from './classes/singletons/FileHandler';
 import { User } from './classes/User';
 import { Statistic } from './classes/Statistic';
 

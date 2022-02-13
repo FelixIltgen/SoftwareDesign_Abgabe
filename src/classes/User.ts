@@ -1,10 +1,4 @@
 import console from 'console';
-import { mainModule } from 'process';
-import { Answers } from 'prompts';
-import * as readline from 'readline';
-import { couldStartTrivia } from 'typescript';
-import { bookingData } from './dao/booking';
-import { carData } from './dao/carInformation';
 import { userData } from './dao/userInterface';
 import Console from './singletons/Console';
 import FileHandler from './singletons/FileHandler';
