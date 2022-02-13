@@ -111,7 +111,7 @@ class Console {
       max: 7200
     })
   }
-  public async benutzerAbfrage(question: string) : Promise<Answers<string>> {
+  public async userQuestion(question: string) : Promise<Answers<string>> {
     return prompts({
       type: 'text',
       name: 'value',
@@ -119,7 +119,7 @@ class Console {
        
     })
   }
-  public benutzerAbfragePw(question: string) : Promise<Answers<string>> {
+  public userQuestionPw(question: string) : Promise<Answers<string>> {
     return prompts({
       type: 'password',
       name: 'value',

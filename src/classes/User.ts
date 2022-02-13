@@ -21,8 +21,8 @@ export class User {
     console.log("Wilkommen bei der Registrierung!");
     console.log("--------------------------------");
     //ask user for name and password
-    let username = await Console.benutzerAbfrage("Geben Sie ein Benutzername ein!");
-    let userPassword = await Console.benutzerAbfragePw("Geben Sie ein Passwort ein!");
+    let username = await Console.userQuestion("Geben Sie ein Benutzername ein!");
+    let userPassword = await Console.userQuestionPw("Geben Sie ein Passwort ein!");
 
     //check if the input is filled with admin values
     if (username.value == "Admin" && userPassword.value == "123") {
@@ -63,8 +63,8 @@ export class User {
     console.log("----------------------------");
 
     //ask user for name and password
-    let username = await Console.benutzerAbfrage("Geben Sie Ihren Benutzername ein!");
-    let userPassword = await Console.benutzerAbfragePw("Geben Sie Ihr Passwort ein!");
+    let username = await Console.userQuestion("Geben Sie Ihren Benutzername ein!");
+    let userPassword = await Console.userQuestionPw("Geben Sie Ihr Passwort ein!");
 
     //check if the input is filled with admin values
     if (username.value == "Admin" && userPassword.value == "123") {

@@ -45,14 +45,14 @@ export class Car {
                     console.log(this.allCarInfo[i].description);
                 }
                 //ask user to chose one car 
-                let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
+                let carNumber: Answers<string> = await Console.userQuestion("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
                 //show chosen car.
                 console.log(this.allCarInfo[carNumber.value]);
                 this.currentCar = carNumber.value;
                 
             } else {
                 //choice two: chose one car out of the first ten
-                let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
+                let carNumber: Answers<string> = await Console.userQuestion("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
                 //show chosen car.
                 console.log(this.allCarInfo[carNumber.value]);
                 this.currentCar = carNumber.value;
@@ -67,7 +67,7 @@ export class Car {
                 console.log([i] + ": " + this.allCarInfo[i].description);
             }
             //ask user for decision
-            let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
+            let carNumber: Answers<string> = await Console.userQuestion("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
             console.log(this.allCarInfo[carNumber.value]);
             this.currentCar = carNumber.value;
             
@@ -80,8 +80,8 @@ export class Car {
 
         console.log("Hier könen Sie nach einem bestimmten Auto suchen");
         //user enters a car description and a engine type.
-        let careDescription = await Console.benutzerAbfrage("Bitte geben Sie ein Gewünschtes Auto an");
-        let carEngineType = await Console.benutzerAbfrage("Bitte geben Sie mit true und false an welche Antriebsart Sie bevorzugen!");
+        let careDescription = await Console.userQuestion("Bitte geben Sie ein Gewünschtes Auto an");
+        let carEngineType = await Console.userQuestion("Bitte geben Sie mit true und false an welche Antriebsart Sie bevorzugen!");
         //check for each car entry if description and engintype match. 
         for (let i = 0; i < this.allCarInfo.length; i++) {
 
@@ -171,10 +171,10 @@ export class Car {
         console.log("Auto hinzufügen!");
         console.log("----------------");
         //read all user input from the console and store it in the car interface.
-        let carId = await Console.benutzerAbfrage("Bitte geben Sie eine ID für das Auto ein!");
+        let carId = await Console.userQuestion("Bitte geben Sie eine ID für das Auto ein!");
         this.car.id = carId.value;
 
-        let carDiscription = await Console.benutzerAbfrage("Bitte geben Sie eine Beschreibung für das Auto an!");
+        let carDiscription = await Console.userQuestion("Bitte geben Sie eine Beschreibung für das Auto an!");
         this.car.description = carDiscription.value;
 
         let carType = await Console.yesNo("Hat das Auto einen Elektroantrieb?");
@@ -194,10 +194,10 @@ export class Car {
         let carUseTime = await Console.numberQuestion("Btte geben Sie eine maximale Nutzungsdauer an!");
         this.car.maxUse = carUseTime.value;
 
-        let carPrice = await Console.benutzerAbfrage("Bitte geben Sie einen Preis für das Auto an!");
+        let carPrice = await Console.userQuestion("Bitte geben Sie einen Preis für das Auto an!");
         this.car.price = carPrice.value;
 
-        let carPricePerMin = await Console.benutzerAbfrage("Bitte geben Sie einen pro Minute für das Auto an");
+        let carPricePerMin = await Console.userQuestion("Bitte geben Sie einen pro Minute für das Auto an");
         this.car.pricePerMin = carPricePerMin.value;
         //push the interface with the data into the car array.
         this.allCarInfo.push(this.car);
@@ -269,7 +269,7 @@ export class Car {
             console.log([i]+": " + foundCars[i]);
         }
         //ask user for a decision
-        let carNumber: Answers<string> = await Console.benutzerAbfrage("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
+        let carNumber: Answers<string> = await Console.userQuestion("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
         let chosenCar: string = foundCars[carNumber.value];
         //check if the chosen car description matches a description of a car 
          for(let i = 0; i< this.allCarInfo.length;i++){
