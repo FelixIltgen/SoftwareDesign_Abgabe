@@ -12,7 +12,7 @@ export class Booking{
     public checkUser: boolean = false;
 
     public booking: bookingData = { date: new Date(), car: "", customer: "", duration: 0, price: 0 };
-    public allBokkingInfo: bookingData[] = FileHandler.readJsonFile("json/booking.json");
+    public allBookingInfo: bookingData[] = FileHandler.readJsonFile("json/booking.json");
 
     public car: carData = { id: 0, description: "", type: false, earliestTime: new Date(), latestTime: new Date, maxUse: 0, price: 0, pricePerMin: 0 };
     public allCarInfo: carData[] = FileHandler.readJsonFile("json/car.json");
@@ -35,9 +35,9 @@ export class Booking{
           let wiriteBooking: Answers<string> = await Console.yesNo("Wollen Sie mit den Oben angegebenen Daten das Auto buchen?");
           if (wiriteBooking.value == true) {
             //write the interface into the arry
-            this.allBokkingInfo.push(this.booking);
+            this.allBookingInfo.push(this.booking);
             //write array into the json file. 
-            FileHandler.writeJsonFile("json/booking.json", this.allBokkingInfo);
+            FileHandler.writeJsonFile("json/booking.json", this.allBookingInfo);
             console.log("Ihre Buchung wurde erfolgreich gespeichert.");
           }else{
             console.log("Ihre Buchung wurde abgebrochen.");

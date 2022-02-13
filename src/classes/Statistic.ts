@@ -4,7 +4,7 @@ import FileHandler from "./singletons/FileHandler";
 export class Statistic {
 
     public booking: bookingData = { date: new Date(), car: "", customer: "", duration: 0, price: 0 };
-    public allBokkingInfo: bookingData[] = FileHandler.readJsonFile("json/booking.json");
+    public allBookingInfo: bookingData[] = FileHandler.readJsonFile("json/booking.json");
 
     public bookSum: number = 0;
     public noBookings: boolean = false;
@@ -13,18 +13,18 @@ export class Statistic {
 
         this.noBookings = false;
         //check if any bookings exists
-        if (this.allBokkingInfo.length == 0) {
+        if (this.allBookingInfo.length == 0) {
             console.log("Es liegen keine Buchungen vor!");
         } else {
             //check for every booking if the given name matches the customer name in the booking
-            for (let i = 0; i < this.allBokkingInfo.length; i++) {
-                if (name == this.allBokkingInfo[i].customer) {
+            for (let i = 0; i < this.allBookingInfo.length; i++) {
+                if (name == this.allBookingInfo[i].customer) {
                     //show user booking information
                     console.log("Buchungsnummer: " + i);
-                    console.log("Datum und Uhrzeit: " + this.allBokkingInfo[i].date);
-                    console.log("Autobeschreibung: " + this.allBokkingInfo[i].car);
-                    console.log("Dauer der Buchung: " + this.allBokkingInfo[i].duration);
-                    console.log("Preis der Buchung: " + this.allBokkingInfo[i].price);
+                    console.log("Datum und Uhrzeit: " + this.allBookingInfo[i].date);
+                    console.log("Autobeschreibung: " + this.allBookingInfo[i].car);
+                    console.log("Dauer der Buchung: " + this.allBookingInfo[i].duration);
+                    console.log("Preis der Buchung: " + this.allBookingInfo[i].price);
                     console.log("--------------------");
                 } else {
                     this.noBookings = true;
@@ -43,14 +43,14 @@ export class Statistic {
         this.bookSum = 0;
         this.noBookings = false;
         //check if any bookings exists
-        if (this.allBokkingInfo.length == 0) {
+        if (this.allBookingInfo.length == 0) {
             console.log("Es liegen keine Buchungen vor");
         } else {
             //check for every booking if the given name matches the customer name in the booking
-            for (let i = 0; i < this.allBokkingInfo.length; i++) {
-                if (name == this.allBokkingInfo[i].customer) {
+            for (let i = 0; i < this.allBookingInfo.length; i++) {
+                if (name == this.allBookingInfo[i].customer) {
                     //calculate the sum of all bookings
-                    this.bookSum = this.bookSum + this.allBokkingInfo[i].price;
+                    this.bookSum = this.bookSum + this.allBookingInfo[i].price;
                 } else {
                     this.noBookings = true;
                 }
@@ -72,14 +72,14 @@ export class Statistic {
         this.noBookings = false;
         let count: number = 0;
         //check if any bookings exists
-        if (this.allBokkingInfo.length == 0) {
+        if (this.allBookingInfo.length == 0) {
             console.log("Es liegen keine Buchungen vor");
         } else {
             //check for every booking if the given name matches the customer name in the booking
-            for (let i = 0; i < this.allBokkingInfo.length; i++) {
-                if (name == this.allBokkingInfo[i].customer) {
+            for (let i = 0; i < this.allBookingInfo.length; i++) {
+                if (name == this.allBookingInfo[i].customer) {
                     //calculate the sum of all bookings
-                    this.bookSum = this.bookSum + this.allBokkingInfo[i].price;
+                    this.bookSum = this.bookSum + this.allBookingInfo[i].price;
                     //increment one every step 
                     count++;
                 } else {

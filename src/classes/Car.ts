@@ -33,7 +33,7 @@ export class Car {
             console.log("Es werden die ersten 10 Autos angezeigt!");
             console.log("-----------------------------");
             //print first ten cars.
-            for (let i = 0; i = 9; i++) {
+            for (let i = 0; i <= 9; i++) {
 
                 console.log([i] + ": " + this.allCarInfo[i].description);
             }
@@ -43,7 +43,8 @@ export class Car {
             if (userDesition.value == 1) {
                 //print the reamining cars, start at the 10th. 
                 for (let i = 9; i < this.allCarInfo.length; i++) {
-                    console.log(this.allCarInfo[i].description);
+            
+                    console.log([i] + ": " + this.allCarInfo[i].description);
                 }
                 //ask user to chose one car 
                 this.carNumber  = await Console.userQuestion("Bitte wählen Sie ein angezeigtes Auto, durch eingabe der Nummer aus!");
