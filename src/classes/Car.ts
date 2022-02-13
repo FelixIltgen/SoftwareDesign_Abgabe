@@ -132,9 +132,13 @@ export class Car {
         // check max time of use
         if (this.userTime.value > this.allCarInfo[this.currentCar].maxUse) {
             console.log("Die maximale Nutzungsdauer wurde überschritten");
+            console.log("Versuchen Sie es erneut!");
+            return await this.requestCar();
             //check if use of time from input matches the given use of time for the car
         } else if (usingTime < minTime || usingTime > maxTime || (usingTime / 60) + minTime > maxTime) {
             console.log("Ihre gewählte Nutzungsdauer passt leider nicht zu Ihrem gewählten Auto");
+            console.log("Versuchen Sie es erneut!");
+            return await this.requestCar();
             //check if a Booking already exsists.
         } else if (this.allBokkingInfo.length == 0) {
             //calculate final price with given data
@@ -163,7 +167,8 @@ export class Car {
             }
             if (checkTimeForBooking == false) {
                 console.log("Leider ist der gewählte Zeitraum für dieses Auto schon belegt");
-                
+                console.log("Versuchen Sie es erneut!");
+                return await this.requestCar();
             } else {
                 //calculate final price with given data
                 this.calculateFinPrice();
