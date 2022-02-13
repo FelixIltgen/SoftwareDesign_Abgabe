@@ -117,7 +117,7 @@ namespace Project {
     }
     public async showUserMenu() {
       // show logged in user userMenu, wait for desision
-      let decision: Answers<string> = await Console.showMoreOptions(["Autos suchen", "Autos filtern", "Alle Autos anzeigen", "Statistiken", "Abmelden"], "Was möchten Sie tun?");
+      let decision: Answers<string> = await Console.showMoreOptions(["Autos suchen", "Autos filtern", "Alle Autos anzeigen", "Statistiken", "Abmelden"], "Was möchten Sie tun");
 
       switch (decision.value) {
         case "1":
@@ -173,7 +173,7 @@ namespace Project {
 
         case "4":
           // show user statitic menu, wait for desision 
-          let decision: Answers<string> = await Console.showOptions(["Alle buchungen Anzeigen", "kumulierten Betrag anzeigen", "Durchschnittsbetrag anzeigen"], "Was möchten Sie genau sehen");
+          let decision: Answers<string> = await Console.showOptions(["Alle buchungen Anzeigen", "kumulierten Betrag anzeigen", "Durchschnittsbetrag anzeigen"], "Was möchten Sie genau tun");
           switch (decision.value) {
             case "1":
               this.statistics.showbookings(this.userName);
@@ -196,7 +196,7 @@ namespace Project {
           break;
 
         case "5":
-          console.log("Du wirst abgemeldet!");
+          console.log("Sie werden abgemeldet!");
           //clear username
           this.userName = "";
           this.programStart();
@@ -264,7 +264,7 @@ namespace Project {
 
         case "4":
           // show user statitic menu, wait for desision
-          let decision: Answers<string> = await Console.showOptions(["Alle buchungen Anzeigen", "kumulierten Betrag anzeigen", "Durchschnittsbetrag anzeigen"], "Was möchten Sie genau sehen");
+          let decision: Answers<string> = await Console.showOptions(["Alle buchungen Anzeigen", "kumulierten Betrag anzeigen", "Durchschnittsbetrag anzeigen"], "Was möchten Sie genau tun");
           switch (decision.value) {
             case "1":
               this.statistics.showbookings(this.userName);

@@ -28,21 +28,21 @@ export class Booking{
           this.booking.price = information.price;
           //show user the information 
           console.log("------------------------------------------------------");
-          console.log("Dein Gewünschtes Datum und deine gewünschte Uhrzeit:" + this.booking.date);
+          console.log("Ihr Gewünschtes Datum und Ihre gewünschte Uhrzeit:" + this.booking.date);
           console.log("Angefragtes Auto: "+this.booking.car);
-          console.log("Name: "+this.booking.customer);
-          console.log("Dauer deiner Buchung: "+this.booking.duration+" Minuten.");
+          console.log("Ihr Name: "+this.booking.customer);
+          console.log("Dauer Ihrer Buchung: "+this.booking.duration+" Minuten.");
           console.log("Kompletter Buchungspreis: "+this.booking.price+" Euro.");
           //ask user if he wants to book the shown car
-          let wiriteBooking: Answers<string> = await Console.yesNo("Willst du mit den Oben angegebenen Daten das Auto buchen?");
+          let wiriteBooking: Answers<string> = await Console.yesNo("Wollen Sie mit den Oben angegebenen Daten das Auto buchen?");
           if (wiriteBooking.value == true) {
             //write the interface into the arry
             this.allBokkingInfo.push(this.booking);
             //write array into the json file. 
             FileHandler.writeJsonFile("json/booking.json", this.allBokkingInfo);
-            console.log("Deine Buchung wurde erfolgreich gespeichert.");
+            console.log("Ihre Buchung wurde erfolgreich gespeichert.");
           }else{
-            console.log("Deine Buchung wurde abgebrochen.");
+            console.log("Ihre Buchung wurde abgebrochen.");
           }
       }
 }

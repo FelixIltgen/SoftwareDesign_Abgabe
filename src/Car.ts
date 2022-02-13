@@ -37,7 +37,7 @@ export class Car {
                 console.log([i] + ": " + this.allCarInfo[i].description);
             }
             //ask user for the next step
-            let userDesition: Answers<string> = await Console.showOnlyTwoOptions(["Alle restlichen Autos anzeigen", "Auto auswählen"], "Ihre weitere Möglichkeiten");
+            let userDesition: Answers<string> = await Console.showOnlyTwoOptions(["Alle restlichen Autos anzeigen", "Auto auswählen"], "Ihre weiteren Möglichkeiten");
             //choice one: show remaining cars
             if (userDesition.value == 1) {
                 //print the reamining cars, start at the 10th. 
@@ -80,8 +80,8 @@ export class Car {
 
         console.log("Hier könen Sie nach einem bestimmten Auto suchen");
         //user enters a car description and a engine type.
-        let careDescription = await Console.userQuestion("Bitte geben Sie ein Gewünschtes Auto an");
-        let carEngineType = await Console.userQuestion("Bitte geben Sie mit true und false an welche Antriebsart Sie bevorzugen!");
+        let careDescription: Answers <string> = await Console.userQuestion("Bitte geben Sie ein Gewünschtes Auto an");
+        let carEngineType: Answers <string> = await Console.yesNo("Möchten Sie ein Benzin oder Diesel betriebens Auto?");
         //check for each car entry if description and engintype match. 
         for (let i = 0; i < this.allCarInfo.length; i++) {
 

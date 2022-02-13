@@ -26,7 +26,7 @@ export class User {
 
     //check if the input is filled with admin values
     if (username.value == "Admin" && userPassword.value == "123") {
-      console.log("Du Vogel, als Admin musst du dich nicht Registrieren, los, auf zur Anmeldung!");
+      console.log("HALllLooo?!?!, als Admin musst du dich nicht Registrieren, los, auf zur Anmeldung!");
     
     } else {
       //check all usernames if input is equal
@@ -48,8 +48,8 @@ export class User {
         this.allUserInfo.push(this.data);
         FileHandler.writeJsonFile("json/user.json", this.allUserInfo);
         //answer user
-        console.log("Username und Passwort wurden gespeichert!");
-        console.log("Wilkommen " + username.value + " du bist jetzt Registriert, viel Spaß");
+        console.log("Benutzername und Passwort wurden gespeichert!");
+        console.log("Wilkommen " + username.value + " Sie sind jetzt Registriert, viel Spaß");
         this.globalUserName = username.value;
 
       } else {
@@ -88,7 +88,7 @@ export class User {
       //check value of checkUsername
       if (this.checkUsername == true) {
         
-        console.log("Hallo " + username.value + ", willkommen zurück, wie können wir dir helfen!");
+        console.log("Hallo " + username.value + ", willkommen zurück, wie können wir Ihnen helfen!");
         //set user name
         this.globalUserName = username.value;
 
