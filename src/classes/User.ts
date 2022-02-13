@@ -6,11 +6,11 @@ import { couldStartTrivia } from 'typescript';
 import { bookingData } from './dao/booking';
 import { carData } from './dao/carInformation';
 import { userData } from './dao/userInterface';
-import { Usermenus } from './Menus';
+
 import Console from './singletons/Console';
 import FileHandler from './singletons/FileHandler';
 
-let menu: Usermenus = new Usermenus();
+
 
 
 export class User {
