@@ -1,5 +1,5 @@
-import { bookingData } from "./classes/dao/booking";
-import FileHandler from "./classes/singletons/FileHandler";
+import { bookingData } from "./dao/booking";
+import FileHandler from "./singletons/FileHandler";
 
 export class Statistic {
 
@@ -19,10 +19,16 @@ export class Statistic {
             //check for every booking if the given name matches the customer name in the booking
             for (let i = 0; i < this.allBokkingInfo.length; i++) {
                 if (name == this.allBokkingInfo[i].customer) {
-                    console.log(this.allBokkingInfo[i]);
+                    //show user booking information
+                    console.log("Buchungsnummer: " + i);
+                    console.log("Datum und Uhrzeit: " + this.allBokkingInfo[i].date);
+                    console.log("Autobeschreibung: " + this.allBokkingInfo[i].car);
+                    console.log("Dauer der Buchung: " + this.allBokkingInfo[i].duration);
+                    console.log("Preis der Buchung: " + this.allBokkingInfo[i].price);
                     console.log("--------------------");
                 } else {
                     this.noBookings = true;
+                    break;
                 }
             }
             //no booking with given name

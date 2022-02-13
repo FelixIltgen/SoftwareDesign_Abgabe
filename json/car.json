@@ -2,7 +2,7 @@
     {
         "id": "1",
         "description": "Porsche GT3",
-        "type": "true",
+        "type": true,
         "earliestTime": "2022-02-06T06:00:00.678Z",
         "latestTime": "2022-02-07T11:00:00.284Z",
         "maxUse": "60",
@@ -12,7 +12,7 @@
     {
         "id": "2",
         "description": "Tesla Model 3",
-        "type": "false",
+        "type": false,
         "earliestTime": "2022-02-07T00:00:00.286Z",
         "latestTime": "2022-02-06T22:00:00.515Z",
         "maxUse": "120",
@@ -22,7 +22,7 @@
     {
         "id": "3",
         "description": "Toyota MR2",
-        "type": "true",
+        "type": true,
         "earliestTime": "2022-02-07T05:15:57.679Z",
         "latestTime": "2022-02-07T19:16:19.827Z",
         "maxUse": 60,
@@ -32,7 +32,7 @@
     {
         "id": "4",
         "description": "VW Golf 3",
-        "type": "true",
+        "type": true,
         "earliestTime": "2022-02-12T00:00:00.174Z",
         "latestTime": "2022-02-12T22:00:00.114Z",
         "maxUse": 180,

@@ -1,11 +1,11 @@
 import { mainModule } from "process";
 import { Answers } from "prompts";
 import { Car } from "./Car";
-import { bookingData } from "./classes/dao/booking";
-import { userBookingInfo } from "./classes/dao/bookingInfo";
-import { carData } from "./classes/dao/carInformation";
-import Console from "./classes/singletons/Console";
-import FileHandler from "./classes/singletons/FileHandler";
+import { bookingData } from "./dao/booking";
+import { userBookingInfo } from "./dao/bookingInfo";
+import { carData } from "./dao/carInformation";
+import Console from "./singletons/Console";
+import FileHandler from "./singletons/FileHandler";
 
 
 
