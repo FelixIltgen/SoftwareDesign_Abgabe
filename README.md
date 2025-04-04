@@ -1,6 +1,6 @@
 # Software Design Abgabe
 ### Beschreibeung
-Dieses Projekt war die Prpüfungsleistung für das Fach Software Design an der Hochschule Furtwangen.
+This project was the final exam for the Software Design course at Furtwangen University.
 ## Requirements
 * Node.js
 * Node Package Manager (npm)
