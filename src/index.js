@@ -13,4 +13,4 @@ var Main = /** @class */ (function () {
     return Main;
 }());
 exports.Main = Main;
-new Main();
+new Main(); 
